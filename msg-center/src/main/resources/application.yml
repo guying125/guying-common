@@ -1,0 +1,42 @@
+project:
+  name: msg-center
+
+server:
+  port: 8081
+  servlet:
+    context-path: /msg-center
+
+spring:
+  profiles:
+    active: dev
+  datasource:
+    name: druidDataSource
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/gyrbac?useUnicode=true&characterEncoding=UTF-8&zoneDateTimeBehavior=convertToNull&autoReconnect=true&useSSL=false
+      username: root
+      password: root  # PC是root，mac是yqj123456...
+      filters: stat,wall,slf4j,config
+      max-active: 100
+      initial-size: 1
+      max-wait: 60000
+      min-idle: 1
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: select 'x'
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-open-prepared-statements: 50
+      max-pool-prepared-statement-per-connection-size: 20
+# 是否启用Swagger
+swagger:
+  enabled: true
+# pageHelper
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
