@@ -1,0 +1,13 @@
+POST http://localhost:8081/msg-center/test2
+Content-Type: application/json
+
+{
+  "name": "杨庆军",
+  "code": "1234596"
+}
+
+###
+GET http://localhost:8081/msg-center/test
+Accept: application/json
+
+###
