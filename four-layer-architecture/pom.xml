@@ -5,9 +5,20 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.guying</groupId>
-    <artifactId>msg-center</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-    <name>msg-center</name>
+    <artifactId>four-layer-architecture</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <properties>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -24,8 +35,8 @@
         <druid.version>1.1.23</druid.version>
 
         <swagger.version>2.9.2</swagger.version>
+        <org.mapstruct.version>1.5.2.Final</org.mapstruct.version>
     </properties>
-
 
     <dependencies>
         <dependency>
@@ -42,6 +53,19 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <version>${spring-boot.version}</version>
+        </dependency>
+        <!-- 组装器工具 -->
+        <!--mapstruct核心-->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${org.mapstruct.version}</version>
+        </dependency>
+        <!--mapstruct编译-->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>${org.mapstruct.version}</version>
         </dependency>
 
         <!--Spring Boot-->
@@ -133,7 +157,6 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql.version.5}</version>
         </dependency>
-
     </dependencies>
 
 

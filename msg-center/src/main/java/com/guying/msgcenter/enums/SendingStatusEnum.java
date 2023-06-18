@@ -6,7 +6,7 @@ import lombok.Getter;
  * 发送状态：
  * 待发送、发送中、发送成功（已发送）、发送失败
  *
- * @author QJYou
+ * @author Code Farmer
  * @date 2023-05-30 19:07
  */
 public enum SendingStatusEnum {

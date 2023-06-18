@@ -6,7 +6,7 @@ import lombok.Getter;
  * 消息状态：
  * 暂存、撤回（已存储）、取消（不存储）、修改（经办修改和退回修改）、待审批、审批通过、审批拒绝、过期、生效
  *
- * @author QJYou
+ * @author Code Farmer
  */
 public enum MessageStatusEnum {
     /**

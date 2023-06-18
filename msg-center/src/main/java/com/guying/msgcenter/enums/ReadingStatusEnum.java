@@ -5,7 +5,7 @@ import lombok.Getter;
 /**
  * 阅读状态：已读（实际已读、标记已读）、未读、已终止
  *
- * @author QJYou
+ * @author Code Farmer
  */
 public enum ReadingStatusEnum {
     /**

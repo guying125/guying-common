@@ -7,7 +7,7 @@ import lombok.Getter;
  * 已接收（已送达）、未接收（未送达）、拒接
  * Received (delivered), Not Received (undelivered), Rejected
  *
- * @author QJYou
+ * @author Code Farmer
  */
 public enum ReceivingStatusEnum {
     /**
