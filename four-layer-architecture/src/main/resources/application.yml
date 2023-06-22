@@ -16,7 +16,7 @@ spring:
       driver-class-name: com.mysql.jdbc.Driver
       url: jdbc:mysql://localhost:3306/gyrbac?useUnicode=true&characterEncoding=UTF-8&zoneDateTimeBehavior=convertToNull&autoReconnect=true&useSSL=false
       username: root
-      password: root  # PC是root，mac是yqj123456...
+      password: yqj123456...  # PC 和 mac是 yqj123456...
       filters: stat,wall,slf4j,config
       max-active: 100
       initial-size: 1
