@@ -5,7 +5,7 @@
     |---consumer            # 可选。消费服务。类命名为xxxConsumer.java，定义接口，基础设施按照消息中间件不同定义实现
     |---controller          # 接口层，⾯向UI提供controller接⼝定义，负责输⼊输出参数获取、解析、参数校验等。命名 xxxController.java
     |---etin                # 对接etin页面的配置。
-    |---ghost               # 对接倚天ghost。命名 xxxGhostAdapterImpl.java，注意，要添加@Service注解
+    |---ghost               # 对接倚天ghost。命名 xxxGhostAdapter.java
     |---model               # 可选。输入输出对象及转换器。xxxRequest.java，xxxResponse.java，xxxConverter.java
         |-----converter     # 可选。输入输出参数与dto的转换。类命名为xxxConverter.java
         |-----request       # 可选。输入参数。类命名为xxxRequest.java，如果和application中的DTO，可以直接使用DTO

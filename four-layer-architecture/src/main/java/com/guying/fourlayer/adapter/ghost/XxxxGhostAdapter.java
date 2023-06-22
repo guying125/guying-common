@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class XxxxGhostAdapterImpl {
-//public class XxxxGhostAdapterImpl implements GhostAdapter {
+public class XxxxGhostAdapter {
+//public class XxxxGhostAdapter implements GhostAdapter {
 
 }
