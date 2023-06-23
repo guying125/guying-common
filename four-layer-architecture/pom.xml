@@ -55,6 +55,11 @@
             <artifactId>mapstruct-processor</artifactId>
             <version>${org.mapstruct.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.5.2</version>
+        </dependency>
 
         <!--Spring Boot-->
         <dependency>
@@ -153,8 +158,6 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <!--使用热部署出现中文乱码解决方案-->
-                    <fork>true</fork>
                     <!--增加jvm参数-->
                     <jvmArguments>-Dfile.encoding=UTF-8</jvmArguments>
                     <!--指定入口类-->
