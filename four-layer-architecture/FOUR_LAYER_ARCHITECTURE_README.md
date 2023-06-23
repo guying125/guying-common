@@ -1,5 +1,7 @@
 # 包结构
 >基础包名（com.guying.fourlayer)
+>
+>com.guying.fourlayer.infrastructure.xxx.mapper
 
 ```text
 |-adapter                       # 适配器层，负责应用与外部交互，包含 Web 控制器、定时任务适配器、消息适配器等适配器，主要处理输入解析、验证、转换、序列化/反序列化、用户登录权限校验等。
