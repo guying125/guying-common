@@ -2,8 +2,8 @@ package com.guying.fourlayer.application.account.service.impl;
 
 import com.guying.fourlayer.application.account.assembler.AccountDTOAssembler;
 import com.guying.fourlayer.application.account.service.AccountService;
-import com.guying.fourlayer.application.account.wrapper.AccountDTO;
-import com.guying.fourlayer.application.account.wrapper.AccountReqDTO;
+import com.guying.fourlayer.application.account.wrapper.dto.AccountDTO;
+import com.guying.fourlayer.application.account.wrapper.dto.AccountReqDTO;
 import com.guying.fourlayer.domain.account.domainservice.AccountDomainService;
 import com.guying.fourlayer.domain.company.entity.Account;
 import lombok.extern.slf4j.Slf4j;

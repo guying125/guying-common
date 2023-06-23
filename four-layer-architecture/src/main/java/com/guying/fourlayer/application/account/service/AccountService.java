@@ -1,7 +1,7 @@
 package com.guying.fourlayer.application.account.service;
 
-import com.guying.fourlayer.application.account.wrapper.AccountDTO;
-import com.guying.fourlayer.application.account.wrapper.AccountReqDTO;
+import com.guying.fourlayer.application.account.wrapper.dto.AccountDTO;
+import com.guying.fourlayer.application.account.wrapper.dto.AccountReqDTO;
 
 /**
  * @author Code Farmer

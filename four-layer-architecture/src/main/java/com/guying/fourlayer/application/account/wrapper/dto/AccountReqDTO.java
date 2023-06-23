@@ -1,4 +1,4 @@
-package com.guying.fourlayer.application.account.wrapper;
+package com.guying.fourlayer.application.account.wrapper.dto;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

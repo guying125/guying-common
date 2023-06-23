@@ -1,4 +1,4 @@
-package com.guying.fourlayer.adapter;
+package com.guying.fourlayer.infrastructure.commons.global;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

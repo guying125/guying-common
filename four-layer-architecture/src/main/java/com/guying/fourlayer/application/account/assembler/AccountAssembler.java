@@ -2,8 +2,8 @@ package com.guying.fourlayer.application.account.assembler;
 
 import com.guying.fourlayer.adapter.model.request.AccountRequest;
 import com.guying.fourlayer.adapter.model.response.AccountResponse;
-import com.guying.fourlayer.application.account.wrapper.AccountDTO;
-import com.guying.fourlayer.application.account.wrapper.AccountReqDTO;
+import com.guying.fourlayer.application.account.wrapper.dto.AccountDTO;
+import com.guying.fourlayer.application.account.wrapper.dto.AccountReqDTO;
 import com.guying.fourlayer.domain.company.entity.Account;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
