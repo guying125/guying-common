@@ -8,6 +8,7 @@ import com.guying.fourlayer.application.account.service.AccountService;
 import com.guying.fourlayer.application.account.wrapper.AccountDTO;
 import com.guying.fourlayer.application.account.wrapper.AccountReqDTO;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,7 +30,7 @@ public class AccountController {
     private AccountDTOAssembler accountDTOAssembler;
 
     @GetMapping("/info")
-    public UniResponse<AccountResponse> queryAccountInfoByAccNum(@ModelAttribute("") AccountRequest accountRequest) {
+    public UniResponse<AccountResponse> queryAccountInfoByAccNum(@ModelAttribute AccountRequest accountRequest) {
         String accountInfo = "1231412313";
         AccountReqDTO accountReqDTO = accountDTOAssembler.toAccountReqDTO(accountRequest);
         AccountDTO accountDTO = accountService.queryAccountInfoByAccNum(accountReqDTO);
