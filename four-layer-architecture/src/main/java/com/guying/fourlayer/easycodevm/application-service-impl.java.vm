@@ -1,0 +1,95 @@
+##定义初始变量
+#set($className = $tool.append($tableInfo.name, "ServiceImpl"))
+#set($appService = $tool.append($tableInfo.name, "Service"))
+#set($beanDTO = $tool.append($tableInfo.name, "DTO"))
+#set($beanReqDTO = $tool.append($tableInfo.name, "ReqDTO"))
+#set($domainService = $tool.append($tableInfo.name, "DomainService"))
+#set($assemblerName = $tool.append($tableInfo.name, "Assembler"))
+
+##设置回调
+$!callback.setFileName($tool.append($className, ".java"))
+$!callback.setSavePath($tool.append($tableInfo.savePath, "/application/easycodegenerate/service/impl"))
+
+##拿到主键
+#if(!$tableInfo.pkColumn.isEmpty())
+    #set($pk = $tableInfo.pkColumn.get(0))
+#end
+
+#if($tableInfo.savePackageName)package $!{tableInfo.savePackageName}.#{end}application.easycodegenerate.service.impl;
+
+import $!{tableInfo.savePackageName}.domain.easycodegenerate.entity.$!{tableInfo.name};
+import $!{tableInfo.savePackageName}.domain.easycodegenerate.domainservice.$!{domainService};
+import $!{tableInfo.savePackageName}.application.easycodegenerate.service.$!{appService};
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+
+/**
+ * $!{tableInfo.comment}($!{tableInfo.name})表服务实现类
+ *
+ * @author $!author
+ * @since $!time.currTime()
+ */
+@RequiredArgsConstructor
+@Slf4j
+@Service("$!tool.firstLowerCase($!{appService})")
+public class $!{className} implements $!{appService} {
+
+private final $!{domainService} $!tool.firstLowerCase($!{domainService});
+
+/**
+ * 通过ID查询单条数据
+ *
+ * @param $!pk.name 主键
+ * @return 持久化对象
+ */
+@Override
+public $!{beanDTO} queryById($!pk.shortType $!pk.name){
+        return this.$!{tool.firstLowerCase($!{domainService})}.queryById($!pk.name);
+        }
+
+/**
+ * 分页查询
+ *
+ * @param $!{tool.firstLowerCase($beanReqDTO)} 筛选条件
+ * @param pageRequest      分页对象
+ * @return 查询结果
+ */
+@Override
+public Page<$!{beanDTO}> queryByPage($!{beanReqDTO} $!{tool.firstLowerCase($beanReqDTO)},PageRequest pageRequest){
+    $!{tableInfo.name} $!{tool.firstLowerCase($tableInfo.name)} = $!{assemblerName}.INSTANCE.to$!{tableInfo.name}($!{tool.firstLowerCase($beanReqDTO)});
+        long total=this.$!{tool.firstLowerCase($domainService)}.count($!{tool.firstLowerCase($tableInfo.name)});
+
+        return new PageImpl<>(this.$!{tool.firstLowerCase($domainService)}.queryAllByLimit($!{tool.firstLowerCase($tableInfo.name)},pageRequest),pageRequest,total);
+        }
+
+/**
+ * 新增数据
+ *
+ * @param $!tool.firstLowerCase($!{beanReqDTO}) 持久化对象
+ * @return 持久化对象
+ */
+@Override
+public int insert($!{beanReqDTO} $!{tool.firstLowerCase($beanReqDTO)}){
+    $!{tableInfo.name} $!{tool.firstLowerCase($tableInfo.name)} = $!{assemblerName}.INSTANCE.to$!{tableInfo.name}($!{tool.firstLowerCase($beanReqDTO)});
+        this.$!{tool.firstLowerCase($!{domainService})}.insert($!tool.firstLowerCase($!{tableInfo.name}));
+
+        return this.$!{tool.firstLowerCase($!{domainService})}.insert($!tool.firstLowerCase($!{tableInfo.name}));
+        }
+
+/**
+ * 修改数据
+ *
+ * @param $!tool.firstLowerCase($!{beanReqDTO}) 持久化对象
+ * @return 持久化对象
+ */
+@Override
+public int update($!{beanReqDTO} $!{tool.firstLowerCase($beanReqDTO)}){
+    $!{tableInfo.name} $!{tool.firstLowerCase($tableInfo.name)} = $!{assemblerName}.INSTANCE.to$!{tableInfo.name}($!{tool.firstLowerCase($beanReqDTO)});
+        this.$!{tool.firstLowerCase($!{domainService})}.update($!tool.firstLowerCase($!{tableInfo.name}));
+        return this.queryById($!{tool.firstLowerCase($!{tableInfo.name})}.get$!tool.firstUpperCase($pk.name)());
+        }
+}

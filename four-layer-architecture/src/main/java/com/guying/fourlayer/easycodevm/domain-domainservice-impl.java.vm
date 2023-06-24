@@ -1,0 +1,87 @@
+##定义初始变量
+#set($domainServiceImplName = $tool.append($tableInfo.name, "DomainServiceImpl"))
+#set($domainServiceName = $tool.append($tableInfo.name, "DomainService"))
+#set($tableBean = $tool.append($tableInfo.name, "PO"))
+#set($beanDTO = $tool.append($tableInfo.name, "DTO"))
+#set($beanReqDTO = $tool.append($tableInfo.name, "ReqDTO"))
+#set($repositoryName = $tool.append($tableInfo.name, "Repository"))
+
+##设置回调
+$!callback.setFileName($tool.append($domainServiceImplName, ".java"))
+$!callback.setSavePath($tool.append($tableInfo.savePath, "/domain/easycodegenerate/domainservice/impl"))
+
+##拿到主键
+#if(!$tableInfo.pkColumn.isEmpty())
+    #set($pk = $tableInfo.pkColumn.get(0))
+#end
+
+#if($tableInfo.savePackageName)package $!{tableInfo.savePackageName}.#{end}domain.easycodegenerate.domainservice.impl;
+
+import $!{tableInfo.savePackageName}.domain.easycodegenerate.entity.$!{tableInfo.name};
+import $!{tableInfo.savePackageName}.domain.easycodegenerate.domainservice.$!{domainServiceName};
+import $!{tableInfo.savePackageName}.domain.easycodegenerate.support.repository.$!{repositoryName};
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+
+/**
+ * $!{tableInfo.comment}($!{tableInfo.name}) 领域服务实现类
+ *
+ * @author $!author
+ * @since $!time.currTime()
+ */
+@RequiredArgsConstructor
+@Slf4j
+@Service("$!tool.firstLowerCase($!{domainServiceName})")
+public class $!{domainServiceImplName} implements $!{domainServiceName} {
+
+private final $!{repositoryName} $!tool.firstLowerCase($!{repositoryName});
+
+/**
+ * 通过ID查询单条数据
+ *
+ * @param $!pk.name 主键
+ * @return 实例对象
+ */
+@Override
+public $!{tableInfo.name} queryById($!pk.shortType $!pk.name) {
+        return null;
+        }
+
+/**
+ * 分页查询
+ *
+ * @param $!{tool.firstLowerCase($tableInfo.name)} 筛选条件
+ * @param pageRequest      分页对象
+ * @return 查询结果
+ */
+@Override
+public Page<$!{tableInfo.name}> queryByPage($!{tableInfo.name} $!{tool.firstLowerCase($tableInfo.name)}, PageRequest pageRequest) {
+        return null;
+        }
+
+/**
+ * 新增数据
+ *
+ * @param $!tool.firstLowerCase($!{tableInfo.name}) 实例对象
+ * @return 实例对象
+ */
+@Override
+public $!{tableInfo.name} insert($!{tableInfo.name} $!tool.firstLowerCase($!{tableInfo.name})) {
+        return null;
+        }
+
+/**
+ * 修改数据
+ *
+ * @param $!tool.firstLowerCase($!{tableInfo.name}) 实例对象
+ * @return 实例对象
+ */
+@Override
+public $!{tableInfo.name} update($!{tableInfo.name} $!tool.firstLowerCase($!{tableInfo.name})) {
+        return null;
+        }
+}

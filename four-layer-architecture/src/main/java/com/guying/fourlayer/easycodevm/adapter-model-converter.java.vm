@@ -1,0 +1,40 @@
+##定义初始变量
+#set($className = $tool.append($tableInfo.name, "DTOConverter"))
+#set($beanDTO = $tool.append($tableInfo.name, "DTO"))
+#set($beanReqDTO = $tool.append($tableInfo.name, "ReqDTO"))
+#set($beanRequest = $tool.append($tableInfo.name, "Request"))
+#set($beanResponse = $tool.append($tableInfo.name, "Response"))
+
+##设置回调
+$!callback.setFileName($tool.append($className, ".java"))
+$!callback.setSavePath($tool.append($tableInfo.savePath, "/adapter/model/converter"))
+
+##拿到主键
+#if(!$tableInfo.pkColumn.isEmpty())
+    #set($pk = $tableInfo.pkColumn.get(0))
+#end
+
+#if($tableInfo.savePackageName)package $!{tableInfo.savePackageName}.#{end}adapter.model.converter;
+
+import $!{tableInfo.savePackageName}.adapter.model.request.$!{beanRequest};
+import $!{tableInfo.savePackageName}.adapter.model.response.$!{beanResponse};
+import $!{tableInfo.savePackageName}.application.easycodegenerate.wrapper.dto.$!{beanDTO};
+import $!{tableInfo.savePackageName}.application.easycodegenerate.wrapper.dto.$!{beanReqDTO};
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
+
+/**
+ * $!{tableInfo.comment}($!{tableInfo.name}) Converter转换器
+ *
+ * @author $!author
+ * @since $!time.currTime()
+ */
+@Mapper(componentModel = "spring")
+public interface $!{className} {
+    $!{className} INSTANCE = Mappers.getMapper($!{className}.class);
+
+public $!{beanReqDTO} to$!{beanReqDTO}($!{beanRequest} $!{tool.firstLowerCase($beanRequest)});
+
+public $!{beanResponse} to$!{beanResponse}($!{beanDTO} $!{tool.firstLowerCase($beanDTO)});
+
+}

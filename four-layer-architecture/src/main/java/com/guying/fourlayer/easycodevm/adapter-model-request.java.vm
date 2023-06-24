@@ -1,0 +1,41 @@
+##定义初始变量
+#set($className = $tool.append($tableInfo.name, "Request"))
+
+##引入宏定义
+$!{define.vm}
+
+##设置回调
+$!callback.setFileName($tool.append($className, ".java"))
+$!callback.setSavePath($tool.append($tableInfo.savePath, "/adapter/model/request"))
+
+##使用宏定义设置包后缀
+#setPackageSuffix("adapter.model.request")
+
+##使用全局变量实现默认包导入
+$!{autoImport.vm}
+import lombok.Data;
+import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+
+/**
+ * $!{tableInfo.comment}($!{tableInfo.name})Request
+ *
+ * @author $!author
+ * @since $!time.currTime()
+ */
+@Accessors(chain = true)
+@Data
+public class $!{className} implements Serializable {
+private static final long serialVersionUID = $!tool.serial();
+#foreach($column in $tableInfo.fullColumn)
+    #if(${column.comment})
+    /**
+     * ${column.comment}
+     */
+    #end
+    #foreach($pkColumn in ${tableInfo.pkColumn})
+    #end
+private $!{tool.getClsNameByFullName($column.type)} $!{column.name};
+#end
+}

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guying.fourlayer.easycodetest.test1.infrastructure.easycodegenerate.mapper.SysConfigMultiMapper">
+
+    <resultMap
+            type="com.guying.fourlayer.easycodetest.test1.infrastructure.easycodegenerate.mapper.dto.SysConfigRepoDTO"
+            id="SysConfigMap">
+        <result property="id" column="ID" jdbcType="INTEGER"/>
+        <result property="value" column="VALUE" jdbcType="VARCHAR"/>
+        <result property="labelNam" column="LABEL_NAM" jdbcType="VARCHAR"/>
+        <result property="type" column="TYPE" jdbcType="VARCHAR"/>
+        <result property="descInf" column="DESC_INF" jdbcType="VARCHAR"/>
+        <result property="sort" column="SORT" jdbcType="VARCHAR"/>
+        <result property="crtBy" column="CRT_BY" jdbcType="VARCHAR"/>
+        <result property="crtTim" column="CRT_TIM" jdbcType="TIMESTAMP"/>
+        <result property="lstUpdBy" column="LST_UPD_BY" jdbcType="VARCHAR"/>
+        <result property="lstUpdTim" column="LST_UPD_TIM" jdbcType="TIMESTAMP"/>
+        <result property="remarks" column="REMARKS" jdbcType="VARCHAR"/>
+        <result property="delFlg" column="DEL_FLG" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="SysConfigMap">
+        select
+        ID, VALUE, LABEL_NAM, TYPE, DESC_INF, SORT, CRT_BY, CRT_TIM, LST_UPD_BY, LST_UPD_TIM, REMARKS, DEL_FLG
+        from sys_config
+        <where>
+            <if test="id != null">
+                and ID = #{id}
+            </if>
+            <if test="value != null and value != ''">
+                and VALUE = #{value}
+            </if>
+            <if test="labelNam != null and labelNam != ''">
+                and LABEL_NAM = #{labelNam}
+            </if>
+            <if test="type != null and type != ''">
+                and TYPE = #{type}
+            </if>
+            <if test="descInf != null and descInf != ''">
+                and DESC_INF = #{descInf}
+            </if>
+            <if test="sort != null">
+                and SORT = #{sort}
+            </if>
+            <if test="crtBy != null and crtBy != ''">
+                and CRT_BY = #{crtBy}
+            </if>
+            <if test="crtTim != null">
+                and CRT_TIM = #{crtTim}
+            </if>
+            <if test="lstUpdBy != null and lstUpdBy != ''">
+                and LST_UPD_BY = #{lstUpdBy}
+            </if>
+            <if test="lstUpdTim != null">
+                and LST_UPD_TIM = #{lstUpdTim}
+            </if>
+            <if test="remarks != null and remarks != ''">
+                and REMARKS = #{remarks}
+            </if>
+            <if test="delFlg != null and delFlg != ''">
+                and DEL_FLG = #{delFlg}
+            </if>
+        </where>
+        limit #{pageable.offset}
+    </select>
+</mapper>

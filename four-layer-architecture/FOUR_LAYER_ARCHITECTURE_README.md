@@ -44,7 +44,7 @@
     |--xxx                      # 基于业务模块拆分不同的包
         |---converter           # 数据对象转换，将数据库PO和第三方DTO对象转换为领域对象，命名为xxxConverter
         |---mapper              # 数据库访问，命名为xxxMapper.java，xxx对应数据库表名
-            |----dto            # application层直接查询返回场景，可能需要关联多张表查询，定义查询对象DTO承载查询结果
+            |----dto            # application层直接查询返回场景，可能需要关联多张表查询，定义查询对象XxxRepoDTO.java承载查询结果
             |----po             # 持久化对象，命名为xxxPO.java
         |---supportimpl         # 领域层仓储接口实现
             |----repository     # 持久层仓库实现类。命名 xxxRepositoryImpl.java

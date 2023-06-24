@@ -1,0 +1,29 @@
+##定义初始变量
+#set($repositoryImplName = $tool.append($tableInfo.name, "RepositoryImpl"))
+#set($repositoryName = $tool.append($tableInfo.name, "Repository"))
+
+##设置回调
+$!callback.setFileName($tool.append($repositoryImplName, ".java"))
+$!callback.setSavePath($tool.append($tableInfo.savePath, "/infrastructure/easycodegenerate/supportimpl/repository"))
+
+##拿到主键
+#if(!$tableInfo.pkColumn.isEmpty())
+    #set($pk = $tableInfo.pkColumn.get(0))
+#end
+
+#if($tableInfo.savePackageName)package $!{tableInfo.savePackageName}.#{end}infrastructure.easycodegenerate.supportimpl.repository;
+
+import $!{tableInfo.savePackageName}.domain.easycodegenerate.support.repository.$!{repositoryName};
+import org.springframework.stereotype.Repository;
+
+/**
+ * $!{tableInfo.comment}($!{tableInfo.name})
+ * 仓储实现层
+ *
+ * @author $!author
+ * @since $!time.currTime()
+ */
+@Repository
+public class $!{repositoryImplName} implements $!{repositoryName} {
+        // implement method here.
+}

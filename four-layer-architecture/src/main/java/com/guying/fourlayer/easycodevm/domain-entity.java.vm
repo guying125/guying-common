@@ -1,0 +1,41 @@
+##引入宏定义
+$!{define.vm}
+
+##设置回调
+$!callback.setFileName($tool.append($tableInfo.name, ".java"))
+$!callback.setSavePath($tool.append($tableInfo.savePath, "/domain/easycodegenerate/entity"))
+
+##使用宏定义设置包后缀
+#setPackageSuffix("domain.easycodegenerate.entity")
+
+##使用全局变量实现默认包导入
+$!{autoImport.vm}
+import lombok.Builder;
+import lombok.Data;
+import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+
+/**
+ * $!{tableInfo.comment}($!{tableInfo.name})
+ *
+ * @author $!author
+ * @since $!time.currTime()
+ */
+@Accessors(chain = true)
+@Data
+@Builder
+public class $!{tableInfo.name} implements Serializable {
+private static final long serialVersionUID = $!tool.serial();
+#foreach($column in $tableInfo.fullColumn)
+    #if(${column.comment})
+    /**
+     * ${column.comment}
+     */
+    #end
+    #foreach($pkColumn in ${tableInfo.pkColumn})
+    #end
+@Column(name = "${column.obj.name}")
+private $!{tool.getClsNameByFullName($column.type)} $!{column.name};
+#end
+}

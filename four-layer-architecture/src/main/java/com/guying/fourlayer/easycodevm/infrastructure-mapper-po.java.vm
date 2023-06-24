@@ -1,0 +1,46 @@
+##引入宏定义
+$!define
+
+$!callback.setFileName($tool.append($!{tableInfo.name}, "PO.java"))
+$!callback.setSavePath($tool.append($tableInfo.savePath, "/infrastructure/easycodegenerate/mapper/po"))
+
+##使用全局变量实现默认包导入
+$!autoImport
+
+#if($tableInfo.savePackageName)package $!{tableInfo.savePackageName}.#{end}infrastructure.easycodegenerate.mapper.po;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+
+/**
+ * $!{tableInfo.comment}($!{tableInfo.name})表 PO
+ *
+ * @author $!author
+ * @since $!time.currTime()
+ */
+@TableName(value = "$!{tableInfo.obj.name}")
+@Accessors(chain = true)
+@Data
+public class $!{tableInfo.name}PO implements Serializable {
+
+    private static final long serialVersionUID = $!tool.serial();
+
+    #foreach($column in $tableInfo.fullColumn)
+        #if(${column.name} != 'createTime' && ${column.name} != 'modifyTime'&& ${column.name} != 'createBy' && ${column.name} != 'modifyBy' && ${column.name} != 'deleted')
+            #if(${column.comment})
+                /**
+                 * ${column.comment}
+                 */
+            #end
+            #if(${column.name} == 'id')
+            @TableId(value = "id", type = IdType.AUTO)
+            #end
+        private $!{tool.getClsNameByFullName($column.type)} $!{column.name};
+        #end
+    #end
+}

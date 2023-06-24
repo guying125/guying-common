@@ -1,0 +1,62 @@
+##定义初始变量
+#set($className = $tool.append($tableInfo.name, "Service"))
+#set($beanDTO = $tool.append($tableInfo.name, "DTO"))
+#set($beanReqDTO = $tool.append($tableInfo.name, "ReqDTO"))
+
+##设置回调
+$!callback.setFileName($tool.append($className, ".java"))
+$!callback.setSavePath($tool.append($tableInfo.savePath, "/application/easycodegenerate/service"))
+
+##拿到主键
+#if(!$tableInfo.pkColumn.isEmpty())
+    #set($pk = $tableInfo.pkColumn.get(0))
+#end
+
+#if($tableInfo.savePackageName)package $!{tableInfo.savePackageName}.#{end}application.easycodegenerate.service;
+
+import $!{tableInfo.savePackageName}.application.easycodegenerate.wrapper.dto.$!{beanDTO};
+import $!{tableInfo.savePackageName}.application.easycodegenerate.wrapper.dto.$!{beanReqDTO};
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+
+/**
+ * $!{tableInfo.comment}($!{tableInfo.name})表应用服务接口
+ *
+ * @author $!author
+ * @since $!time.currTime()
+ */
+public interface $!{className} {
+
+        /**
+         * 通过ID查询单条数据
+         *
+         * @param $!pk.name 主键
+         * @return 实例对象
+         */
+    $!{beanDTO} queryById($!pk.shortType $!pk.name);
+
+        /**
+         * 分页查询
+         *
+         * @param $!tool.firstLowerCase($!{beanReqDTO}) 筛选条件
+         * @param pageRequest      分页对象
+         * @return 查询结果
+         */
+        Page<$!{beanDTO}> queryByPage($!{beanReqDTO} $!tool.firstLowerCase($!{beanReqDTO}), PageRequest pageRequest);
+
+        /**
+         * 新增数据
+         *
+         * @param $!tool.firstLowerCase($!{beanReqDTO}) 实例对象
+         * @return 新增数量
+         */
+    int insert($!{beanReqDTO} $!tool.firstLowerCase($!{beanReqDTO}));
+
+        /**
+         * 修改数据
+         *
+         * @param $!tool.firstLowerCase($!{beanReqDTO}) 实例对象
+         * @return 更新数量
+         */
+    int update($!{beanReqDTO} $!tool.firstLowerCase($!{beanReqDTO}));
+}

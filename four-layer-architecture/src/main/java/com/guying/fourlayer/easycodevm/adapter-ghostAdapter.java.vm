@@ -1,0 +1,41 @@
+##定义初始变量
+#set($className = $tool.append($tableInfo.name, "GhostAdapter"))
+#set($appService = $tool.append($tableInfo.name, "Service"))
+
+##设置回调
+$!callback.setFileName($tool.append($className, ".java"))
+$!callback.setSavePath($tool.append($tableInfo.savePath, "/adapter/ghost"))
+##拿到主键
+#if(!$tableInfo.pkColumn.isEmpty())
+    #set($pk = $tableInfo.pkColumn.get(0))
+#end
+
+#if($tableInfo.savePackageName)package $!{tableInfo.savePackageName}.#{end}adapter.ghost;
+
+import $!{tableInfo.savePackageName}.application.easycodegenerate.service.$!{tableInfo.name}Service;
+import com.guying.fourlayer.infrastructure.commons.global.UniResponse;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * $!{tableInfo.comment}($!{tableInfo.name}) Ghost适配器
+ *
+ * @author $!author
+ * @since $!time.currTime()
+ */
+@RequiredArgsConstructor
+@Slf4j
+@RestController
+@RequestMapping("/$!tool.firstLowerCase($tableInfo.name)")
+public class $!{className} {
+private final $!{appService} $!tool.firstLowerCase($appService);
+
+/**
+ * demo
+ */
+public UniResponse<String> query(){
+        return UniResponse.buildSuccess();
+        }
+}
