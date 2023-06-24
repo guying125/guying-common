@@ -6,22 +6,21 @@ import com.guying.fourlayer.application.account.wrapper.dto.AccountDTO;
 import com.guying.fourlayer.application.account.wrapper.dto.AccountReqDTO;
 import com.guying.fourlayer.domain.account.domainservice.AccountDomainService;
 import com.guying.fourlayer.domain.company.entity.Account;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
  * @author Code Farmer
  * @since current time
  */
+@RequiredArgsConstructor
 @Slf4j
 @Service
 public class AccountServiceImpl implements AccountService {
-    @Autowired
-    private AccountDomainService accountDomainService;
+    private final AccountDomainService accountDomainService;
 
-    @Autowired
-    private AccountDTOAssembler accountDTOAssembler;
+    private final AccountDTOAssembler accountDTOAssembler;
 
     @Override
     public AccountDTO queryAccountInfoByAccNum(AccountReqDTO accountReqDTO) {
